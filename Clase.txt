@@ -1,0 +1,243 @@
+sistema de bases de datos distribuidos
+que tipo de arquitectura recomendada azur
+nombre apellido
+proponer un tema de acuerdo a la distribución de datos
+
+gestion de un inventario
+evaluación de cualquier sistema informatico sobre la vulnerabilida de la bd
+tiendas en linea 
+bd gestion de citas medicas
+bd comercio electrónico 
+bd de pinturas personas que se encargan de pintar 
+sistema hospitalario
+sistema control de aerolíneas de control sobre las seguridad
+sistema de compra y venta de productos medicos
+sistema para gestion de iventarios para artesanías
+sistema para mecánica 
+sistema para químicos de lavados de dientes
+sistema intermediario de productos mediante inversión 
+sistema para comprar a distrintas empresas
+sistema para maquinarias 
+sistema electrónicos 
+sistema de transporte inter provinciales 
+sistema  
+---------------------------------------------------------
+****************************
+replicación de base de datos
+esquemas e replicación de bs de datos replicación activa/pasiva instantánea/transaccional/merhe
+replicación síncrona
+ransaccional/merge replicación
+****************************************** 
+escenarios de replicación de bd
+************************************************************************
+una bd distribuida debe de manejar de forma transparente los datos, 
+una bd distribuida la metas que tiene es: latencia, tolerancia a fallos, estabilidad, autonomía 
+3 cosas importantes para tener una bd distribuida
+- varios sistemas de gestiones de bd
+- varios sistemas operativos
+- varias maquinas redes de comunicación 
+existen 2 redes LAN y WANT
+se puede ver como si fuera una centralizada 
+
+una bdd es un tipo de bd virtual cuyas partes se almacenan en varias bd 
+
+su propio dbms local y software de administración de transacción 
+
+un sistema de gestion de base de datos tiene, conectividad y almacenamiento 
+en conclusion 
+es un conjunto de multiples bd lógicamente relacionada 
+se conecta mediante una red y con eso los datos se reflejan automáticamente.
+ 
+******************************************************************************************************************
+SEMANA 2 CLASE 2-3 01/09/2025
+BASE DE DATOS DISTRIBUIDA 
+transparencia-> puedo ver lo que se hace a la vez en los nodos
+
+rige el almacenamiento y procesamiento de datos lógicamente relacionados a traves de sistemas de computadoras interconectadas, la cual se distribuye entra varios sitios 
+--------------------------------------------------------------------------------------------
+Estaciones de trabajo -> clientes ejm: reloj, móvil, compu
+
+componentes de software y hardware ->
+
+medios de comunicación -> la red
+
+Procesador de transacciones -> sistema de gestor de base de datos
+
+El procesador de datos -> va a estar alojado en el servidor 
+----------------------------------------------------------------------------------------------
+podemos simular mediante maquinas virtuales
+-------------------------------------------------------------------------------------------
+Características de un SMBD BDD
+1.- Recibe solicitud de una aplicación 
+2.- Valida, analiza y descompone la solicitud. 
+3.- Descompone la solicitud en varias operaciones de disco.
+4.- Busca localiza lee y valida todos los datos 
+5.- Garantiza la consistencia, la seguridad y la integridad.
+6.- Validad los datos de conformidad con las condiciones, especificadas por la solicitud.
+7.- Presenta los datos seleccionados en los datos requeridos
+8.- Todas están actividades son transparente para el usuario
+----------------------------------------------------------------------------------------------
+CLASIFICACION DE LAS BDD
+- Los sistemas de administración de base de datos generalizado.
+- Las BD se clasifican en como la distribución de los procesos y datos son soportados: DB centralizada y DB distribuida,
+----------------------------------
+CLASIFICACION DE LAS BDD
+me puse a jugar no copie
+-----------------------------------------------
+BASE DE DATOS DISTRIBUIDAS
+Procesamiento en sitios multiples y datos en sitios multiples. -> SMBDD Homogéneas
+------------------------------------------------------------------------------------------
+VENTAJAS DE LOS SISTEMAS DE ADMINISTRACION DE BDD (DDBMS).
+1.- Los datos se localizan cerca del sitio de "mayor demanda"
+2.- Acceso más rápido a los datos
+3.- Procesamiento mas rápido de los datos
+4.- Facilita el crecimiento 
+5.- Comunicaciones mejoradas
+6.- Costos de operación reducidos
+7.- Interface de usuarios fácil de usar.
+8.- Menos peligro de falla en un solo punto
+9.- Independencia del procesador 
+------------------------------------------------------------------------------------------
+PROBLEMAS QUE SE PRESENTAN EN LAS BASE DED DATOS DISTRIBUIDA
+1.- El rendimiento puede afectarse por la carga del trabajo
+2.- La confiabilidad de los sistemas distribuidos, por la complejidad de los componentes
+3.- Por mayor complejidad, alto gatos de construcción y mantenimiento.
+4.-
+----------------------------------------------------------------------------------------------------- 
+NIVELES DED TRANSPARIENCIA DE UNA BASE DE DATOS DISTRIBUIDAS
+La transparencia se puede entender como la separación de la semántica del alto nivel de un sistema de los aspectos de bajo novel relacionados a la implementación del mismo.
+
+❖La transparencia de fragmentación.
+❖La transparencia de ubicación.
+❖La transparencia de ubicación local.
+------------------------
+existen 6 niveles de transacción
+Transparencia de distribución.
+ ❖Transparencia de transacción.
+ ❖Transparencia de replicación.
+ ❖Transparencia de falla.
+ ❖Transparencia de desempeño.
+ ❖Transparencia de heterogeneidad.
+
+CREATE TABLA UNIVERSIDAD( ID_UNI, NOM_UNI);
+
+INSERT INTO UNIVERSIDAD VALUES ('UTA', 'UNIVERSIDAD TÉCNICA DE AMBATO');
+
+CREATE TABLA CAMPOS( ID_CAM, UBI_CAMP, ID_UNI_PER);
+
+INSERT INTO CAMPOS VALUES ('C01', 'HUACHI', 'UTA');
+INSERT INTO CAMPOS VALUES ('C02', 'QUEROCHACA', 'UTA');
+
+CREATE TABLA FACULTADES(ID_FAC, NOM_FAC, ID_CAM_PER);
+
+INSERT INTO FACULTADES VALUES ('FISEI', 'FACULTAD DE INGENIERIA EN SISTEMAS', 'C01');
+
+
+CREATE TABLE CARRERAS(ID_CAR, NOM_CAR, ID_FAC_PER, CUP_DIS_CARR);
+
+INSERT INTO CARRERAS VALUES ('CAR01', 'SISTEMAS DE BASES DE DATOS DISTRIBUIDOS', 'FISEI', 12);
+
+-----------------------------------------------------------------------------------------------------
+
+CREATE TABLE CAMPUS
+(ID_CAM VARCHAR(5) PRIMARY KEY, 
+ NOM_CAM VARCHAR(20) NOT NULL,
+ UBI_CAP VARCHAR(30) NOT NULL);
+
+INSERT INTO CAMPUS VALUES('CAMP1','CAMPUS INGAHURCO','INGAHURCO');
+INSERT INTO CAMPUS VALUES('CAMP2','CAMPUS QUEROCHACA','QUEROCHACA');
+INSERT INTO CAMPUS VALUES('CAMP3','CAMPUS HUACHI','HUACHI');
+
+
+CREATE TABLE CARRERAS
+(ID_CAR VARCHAR(5) PRIMARY KEY,
+ NOM_CAR VARCHAR(50) NOT NULL,
+ CAM_PER_CAR REFERENCES CAMPUS(ID_CAM),
+ CUPOS_DISPONIBLES NUMBER NOT NULL);
+
+INSERT INTO CARRERAS VALUES('CAR1','TECNOLOGIAS DE LA INFORMACION','CAMP3',20);
+INSERT INTO CARRERAS VALUES('CAR2','TELECOMUNICACIONES','CAMP3',50);
+INSERT INTO CARRERAS VALUES('CAR3','INGENIERIA INDUSTRIAL','CAMP3',10);
+
+INSERT INTO CARRERAS VALUES('CAR4','MEDICINA','CAMP1',60);
+INSERT INTO CARRERAS VALUES('CAR5','ENFERMERIA','CAMP1',5);
+INSERT INTO CARRERAS VALUES('CAR6','AUXILIAR EN ENFERMERIA','CAMP1',60);
+
+INSERT INTO CARRERAS VALUES('CAR7','AGRONOMIA','CAMP2',70);
+INSERT INTO CARRERAS VALUES('CAR8','VETERINARIA','CAMP2',90);
+INSERT INTO CARRERAS VALUES('CAR9','BIOTECNOLOGIA','CAMP2',40);
+
+SELECT C.NOM_CAR, A.NOM_CAM
+FROM CARRERAS C,CAMPUS A 
+WHERE C.CAM_PER_CAR = 'CAMP1'
+AND C.CAM_PER_CAR = A.ID_CAM
+AND C.CUPOS_DISPONIBLES>60;
+
+SELECT C.NOM_CAR, A.NOM_CAM, C.CUPOS_DISPONIBLES
+FROM CARRERAS C,CAMPUS A 
+WHERE C.CAM_PER_CAR = A.ID_CAM
+AND C.CUPOS_DISPONIBLES>70;
+
+
+SELECT NOM_CAR 
+FROM CARRERAS 
+WHERE CAM_PER_CAR = 'CAMP3';
+
+
+SELECT *
+FROM CARRERAS
+WHERE CAM_PER = 'CAMP3',
+CUP_DIS_CARR > 5;
+
+
+
+
+SELECT *
+FROM CARRERAS
+WHERE cam_per_car = 'CAMP3'
+AND cupos_disponibles > 61
+UNION
+SELECT *
+FROM CARRERAS
+WHERE cam_per_car = 'CAMP1'
+AND cupos_disponibles > 20
+UNION
+SELECT *
+FROM CARRERAS
+WHERE cam_per_car = 'CAMP2'
+AND cupos_disponibles > 70;
+
+
+
+
+
+
+
+
+
+************************************************************************************************
+PROYECTO
+SISTEMA PARA UN HOSPITAL O UNA CLINICA Y VA A TENER 4 SURCURSALES, QUITO, 
+************************************************************************************************
+
+****
+clase 4 05/09/2025
+transparencia de transacción 
+permite actualizar datos en varios sitios de la red, si esta bien lo hace si no se acaba.
+
+formato de transacción:
+begin work -> Inicio de la transacción 
+*
+select 
+update  -> Solicitudes  
+delete 
+*
+commit -> fin de la transacción 
+
+Trasaccion distribuida. actualiza y solicita datos de varios sitios remotos en una red.
+
+----
+solicitud remota -> accede a datos que sera procesados por un sólo procesador de base de datos remoto.
+
+
+
