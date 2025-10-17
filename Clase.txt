@@ -49,7 +49,7 @@ es un conjunto de multiples bd lógicamente relacionada
 se conecta mediante una red y con eso los datos se reflejan automáticamente.
  
 ******************************************************************************************************************
-SEMANA 2 CLASE 2-3 01/09/2025
+SEMANA 2 CLASE 3-4 01/09/2025
 BASE DE DATOS DISTRIBUIDA 
 transparencia-> puedo ver lo que se hace a la vez en los nodos
 
@@ -81,8 +81,7 @@ CLASIFICACION DE LAS BDD
 - Los sistemas de administración de base de datos generalizado.
 - Las BD se clasifican en como la distribución de los procesos y datos son soportados: DB centralizada y DB distribuida,
 ----------------------------------
-CLASIFICACION DE LAS BDD
-me puse a jugar no copie
+
 -----------------------------------------------
 BASE DE DATOS DISTRIBUIDAS
 Procesamiento en sitios multiples y datos en sitios multiples. -> SMBDD Homogéneas
@@ -113,11 +112,11 @@ La transparencia se puede entender como la separación de la semántica del alto
 ------------------------
 existen 6 niveles de transacción
 Transparencia de distribución.
- ❖Transparencia de transacción.
- ❖Transparencia de replicación.
- ❖Transparencia de falla.
- ❖Transparencia de desempeño.
- ❖Transparencia de heterogeneidad.
+Transparencia de transacción.
+Transparencia de replicación.
+Transparencia de falla.
+Transparencia de desempeño.
+Transparencia de heterogeneidad.
 
 CREATE TABLA UNIVERSIDAD( ID_UNI, NOM_UNI);
 
@@ -293,10 +292,149 @@ INSTALAR
 - Una maquina virtual 
 - 2 sistemas operativos UBUNTU 20 GRAFICO.
 **************************************************
-
  
+preguntas de la semana 2
+
+En UTA_Distribuida, una consulta a global.extensiones devuelve filas de Huachi, Ingahurco y Querochaca sin que el usuario conozca dónde vive cada fragmento. ¿Qué tipo de transparencia es la principal en juego?
+
+global.oferta_carrera une (UNION ALL) las tablas site_* .oferta_carrera y el usuario no escribe manualmente múltiples SELECT por sede. ¿Qué nivel de transparencia se ilustra?
+
+Para simplificar consultas, se crean sinónimos carreras, extensiones, oferta que apuntan a las vistas globales; así el usuario no necesita prefijos de esquema. ¿Qué transparencia describe mejor este caso?
+
+Una transacción inserta oferta en Querochaca y actualiza cupos en Huachi como una unidad atómica; si falla un sitio se revierte todo. ¿Qué transparencia se busca demostrar?
+
+---------------------------------------------------------------------------------------------------------------------------------------
+SEMANA 3 CLASE 5
+El sistema ANSI-SPARC divide a un sistema en tres niveles: interno, conceptual y externo
+esquema -> es una estructura 
+
+esquema interno va a ver un esquema físico -> los script son los esquemas físicos
+-------------------------------------------------------------------------------------------
+en el nivel interno: describe la estructura física de la bd mediando un esquema interno.
+nivel conceptual: describe entidades, atributos, relaciones , operaciones del usuario
+nivel externo: describe varios esquemas externos o vistas de usuario
+-------------------------------------------------------------------------------------
+Los unicos datos estan en datos fisicos -> los scripts 
+
+basado en datos -> se indentifica los diferentes tipos de descripcion de datos.
+
+----
+ARQUITECTURA ANSI/SPARC de un sistema distribuida 
+base de datos distribuidos HOMOGÉNEOS 
+Tiene múltiples colecciones de datos.
+Integra múltiples recursos de datos
+Se parecen a un sistema centralizado. Datos en varios sitios
+comunicados por la red.
+No existen usuarios locales y todos ellos acceden la base de datos a
+través de una interfaz global.
+El esquema global es la unión de toda las descripciones de datos locales
+-------------------------------------------------------------------------------
+ARQUITECTURA ANSI/SPARC de un sistema distribuida 
+base de datos distribuidos HETEROGÉNEOS.
+Una subclase son los sistemas de administración de multi-bases de datos 
+-------------------------------------------------------------------------------------
+Diseño conceptual de la base de datos.
+diseño logico de la base de datos
+--
+diseño fisico de la base de datos 
+se tiene en cuenta 3 problemas siguientes
+Cómo dividir la base de datos en fragmentos.
+Qué fragmentos replicar.
+Dónde localizar estos fragmentos y réplicas.
+-----
+¿Cuáles son los objetivos del diseño de la distribución de los datos?
+----------------------------
+Procesamiento local
+colocar los datos tan cerca como sea posible de las apliaciones que los utilizan.
+--------------------------------
+Distribución de trabajo
+
+--------------------------------------
+costo de almacenamiento
+el costo de almacenamiento de datos no es tan relevante si este se compara con el de cpu
+-----------------------------------------------------------------------------------
+****
+problemas de fragmentación 
+Se refiere al particionamiento de la información para distribuir cada parte en los diferentes sitios de la red.
+
+Se debe de responder las siguientes preguntas:
+¿Por qué hacer una fragmentación de datos?
+¿Cómo realizar la fragmentación?
+¿Qué tanto se debe fragmentar?
+¿Cómo probar la validez de una fragmentación?
+¿Cómo realizar el asignamiento de fragmentos?
+¿Cómo considerar los requerimientos de la información?
+-----------------------------------------------------------------------------------
+Base de datos de usuario
+Base de datos de sistema
+Una tabla.
+--
+Cada fragmento puede guardarse en cualquier sitio en una red de
+computadoras. 
+------------------------------------------------------------------------------------
+catalogo -> donde están todas las reglas
+se guardan en catalogo de datos distribuidos, desde donde es accedida por el procesador de transacciones para procesar las solicitudes de los usuarios.
+
+******
+-------------------------------------
+Fragmentación Horizontal
+Se refiere a la división de una relación en subconjunto(fragmentos) de tuplas (filas).
+cada fragmento se guarda en un nodo diferente, y cada uno de ellos tiene filas únicas.
+-------------------------------------------------------------------------------------------------------------
+Fragmentación Vertical
+Se refiere a la división de una relación en subconjuntos de atributos (columna).
+-------------------------------------------------------------------------------------------------------
+Fragmentación Mezclada
+Se refiere a una combinación de estrategias horizontales y verticales.
+**********
+-------------------------------------------------------------------------------------------------------
+Clase 6 semana 3 12/09/2025
+Preguntas del dia 
+(Opción múltiple) ¿Qué describe el nivel interno? A) Vistas de usuario y reportes B) Estructura física mediante un esquema interno C) Entidades, atributos y restricciones lógicas D) Reglas de negocio en la aplicación
+El nivel conceptual se centra en entidades, atributos, relaciones, operaciones de usuario y restricciones.
+¿Qué nombre reciben las “vistas de usuario” y en qué nivel se ubican?
+¿Cuál de estos enunciados corresponde al nivel externo? A) Define índices y estructuras de almacenamiento en disco B) Proporciona múltiples esquemas orientados a distintos usuarios C) Define claves foráneas a nivel físico D) Determina direcciones de bloques en el disco
+I. Interno — b) Estructura física II. Conceptual — c) Modelo lógico global III. Externo — a) Vistas de usuario
+¿En qué nivel se documentan “entidades, atributos, relaciones y restricciones” del modelo global? A) Externo B) Conceptual C) Interno D) Físico-operativo
+Menciona dos ejemplos de decisiones típicas del nivel interno.
+¿Qué afirmación es correcta respecto a la separación entre niveles? A) Los usuarios finales acceden directamente al nivel interno B) El nivel conceptual actúa como puente entre externo e interno C) El nivel externo controla los buffers de disco D) El nivel interno define las vistas de seguridad lógicas
+(Caso breve) Una analista necesita una vista con solo Cliente(nombre, ciudad) para un grupo comercial, sin modificar la base física. a) ¿Qué nivel crea esa vista? b) ¿Qué nivel permanece estable aunque cambien índices y archivos?
+-----------------------------------------
+
+ejercicio 1 
+
+SELECT id, title
+FROM course
+WHERE id IN ( SELECT course_id
+    	      FROM course_edition
+              WHERE academic_semester_id IN (SELECT id
+        		 	             FROM academic_semester
+        				     WHERE term ILIKE '%Primavera%'));
+
+EJERCICIO2
+
+SELECT ID
+
+3.- Profesor(es) con menos cursos:
 
 
+SELECT id, first_name, last_name
+FROM student
+WHERE id IN (SELECT student_id
+    	     FROM course_enrollment
+             GROUP BY student_id
+             HAVING COUNT(*) >= ALL (SELECT COUNT(*)
+        			     FROM course_enrollment
+       				     GROUP BY student_id));
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Semana 4 
+
+
+
+
+SELECT *
+FROM empleados
+WHERE salario > (SELECT AVG(salario) FROM empleados);
 
 
 
